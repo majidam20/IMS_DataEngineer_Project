@@ -15,8 +15,8 @@
 </br>
 
 
-Since size of the sars_covs.csv file is big then please download the file from the following address and put in data folder:
+Note: Since size of the sars_covs.csv file is big then please download the file from the following address and put in data folder:
 
-</br> 
+
 
 SARS-CoV-2-Sequenzdaten_Deutschland.csv.xz [GitHub Pages](https://github.com/robert-koch-institut/SARS-CoV-2-Sequenzdaten_aus_Deutschland/blob/master/SARS-CoV-2-Sequenzdaten_Deutschland.csv.xz)
