@@ -15,7 +15,7 @@
 </br>
 
 
-Note: Since size of the sars_covs.csv file is big then please download the file from the following address and put in data folder:
+Note: Since size of the sars_covs.csv file is big then please download the file from the following address and put in `data` folder:
 
 
 
