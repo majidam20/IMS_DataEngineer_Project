@@ -19,4 +19,4 @@ Note: Since size of the sars_covs.csv file is big then please download the file 
 
 
 
-SARS-CoV-2-Sequenzdaten_Deutschland.csv.xz [GitHub Pages](https://github.com/robert-koch-institut/SARS-CoV-2-Sequenzdaten_aus_Deutschland/blob/master/SARS-CoV-2-Sequenzdaten_Deutschland.csv.xz)
+[SARS-CoV-2-Sequenzdaten_Deutschland.csv.xz](https://github.com/robert-koch-institut/SARS-CoV-2-Sequenzdaten_aus_Deutschland/blob/master/SARS-CoV-2-Sequenzdaten_Deutschland.csv.xz)
