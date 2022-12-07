@@ -5,8 +5,7 @@ CREATE TABLE `laboratory` (
   `DATE_DRAW` varchar(50) DEFAULT NULL,
   `OWN_FASTA_ID` varchar(50) DEFAULT NULL,
   `RECEIVE_DATE` varchar(50) DEFAULT NULL,
-  `PROCESSING_DATE` varchar(50) DEFAULT NULL,
-  `SENDING_LAB_PC` int DEFAULT NULL
+  `PROCESSING_DATE` varchar(50) DEFAULT NULL
 ) 
 
 
@@ -15,9 +14,26 @@ CREATE TABLE `sequence` (
   `SEQ_TYPE` varchar(50) DEFAULT NULL,
   `SEQ_REASON` varchar(50) DEFAULT NULL,
   `SAMPLE_TYPE` varchar(50) DEFAULT NULL,
-  `SEQUENCING_LAB_PC` int DEFAULT null,
+  
   `GISAID_ACCESSION` varchar(50) DEFAULT NULL
 ) 
+
+CREATE TABLE `labRegion` (
+  `IMS_ID` varchar(50) DEFAULT NULL,
+  `SENDING_LAB_PC` int DEFAULT null,
+  `SEQUENCING_LAB_PC` int DEFAULT null,
+  `state` varchar(50) DEFAULT 'Berlin', 
+  `county` varchar(50) DEFAULT 'Germany', 
+  `longitude` int DEFAULT 52,
+  `latitude` int DEFAULT 13
+) 
+
+drop table labRegion
+
+# Insert data from Sarc_cove to table labRegion
+insert into labRegion (IMS_ID,  SENDING_LAB_PC , SEQUENCING_LAB_PC)
+select IMS_ID,  SENDING_LAB_PC , SEQUENCING_LAB_PC
+from sars_cov
 
 
 # Insert data from Sarc_cove to table sequence
@@ -32,26 +48,28 @@ select IMS_ID,  DATE_DRAW , OWN_FASTA_ID, RECEIVE_DATE, PROCESSING_DATE, SENDING
 from sars_cov 
 
 
-# CHECK duplicate IMS_ID values, as mentioned IMS_ID should be unique
-SELECT
-    IMS_ID, COUNT(*)
+# CHECK duplicate IMS_ID values, as mentioned IMS_ID should be unique 
+ SELECT
+    *, COUNT(*)
 FROM
     sars_cov sc 
 GROUP BY
     IMS_ID
 HAVING 
-    COUNT(*) > 1
-    
+    COUNT(*) > 1   
+ 
     
 # Check correctness of data for column SAMPLE_TYPE, and check rows that primary key IMS_ID maybe is null
  select IMS_ID ,DATE_DRAW ,SEQ_TYPE ,SEQ_REASON ,SAMPLE_TYPE ,OWN_FASTA_ID ,RECEIVE_DATE ,
-	PROCESSING_DATE ,SENDING_LAB_PC ,SEQUENCING_LAB_PC,GISAID_ACCESSION from sars_cov
-#where IMS_ID = null 
+	PROCESSING_DATE ,GISAID_ACCESSION from sars_cov
+-- where IMS_ID = null 
 where not SAMPLE_TYPE  in ("S001","S002","S003","S004","S005","S006","S007","S008","S009","S010","S011","S012","S013","S014","S015","S016","S017", "X")
 
 
 
 # chech the format of the date columns to be in specified format like as JJJJ-MM-TT
+ SELECT count(*) FROM sars_cov
+
  SELECT count(*) FROM sars_cov 
  WHERE DATE(STR_TO_DATE(DATE_DRAW, '%Y-%m-%d')) IS not NULL
 
